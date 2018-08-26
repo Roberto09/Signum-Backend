@@ -1,1 +1,1 @@
-web gunicorn EmergencyAppBack:app
+web: gunicorn app:app
