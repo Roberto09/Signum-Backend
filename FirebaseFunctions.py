@@ -26,3 +26,4 @@ def registerAccount(uid, password):
     fb.put('/Users/'+uid, "Nonce", strnonce, params={'print': 'silent'}, headers={'X_FANCY_HEADER': 'VERY FANCY'})
     fb.put('/Users/'+uid+"/Messages", "0", "Hola, me encuentro bien actualmente, me pondre en contacto contigo pronto.", params={'print': 'silent'}, headers={'X_FANCY_HEADER': 'VERY FANCY'})
     fb.put('/Users/'+uid+"/Messages", "1", "Hola, me encuentro mal, ayuda.", params={'print': 'silent'}, headers={'X_FANCY_HEADER': 'VERY FANCY'})
+    fb.put('/Users/' + uid + "/FacebookInfo", "Contacts", "x", params={'print': 'silent'}, headers={'X_FANCY_HEADER': 'VERY FANCY'})
