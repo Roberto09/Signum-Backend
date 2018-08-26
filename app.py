@@ -15,12 +15,14 @@ def sendTheMessage(fbUserID, messageId):
     else:
         return jsonify({"status" : "not ok"})
 
-@app.route('/createUser', methods=['POST'])
-def registerUser():
-    print(request.json["uid"], " ", request.json["pass"])
-    FirebaseFunctions.registerAccount(request.json["uid"], request.json["pass"])
-    return "todo bien"
+@app.route('/createUser/<string:uid>/<string:password>', methods=['GET'])
+def registerUser(uid, password):
+    FirebaseFunctions.registerAccount(uid, password)
+    return jsonify({"status" : "ok"})
 
+@app.route('/getUserFriends/<string:uid>', methods=['GET'])
+def getUserFriends(uid):
+    return jsonify(FacebookFunctions.sendFriends(uid))
 
 if __name__ == '__main__':
     app.run()

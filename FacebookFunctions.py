@@ -53,7 +53,7 @@ def sendMessage(senderId, messageId):
     client = fbchat.Client(username, userDectyptedPassword)
 
     for key, name in friendsToSend.items():
-        msg = Message("test")
+        msg = Message(messageToSend)
         friends = client.searchForUsers(name)
         print(msg, " ", name)
         sent = client.send(msg, friends[0].uid)
@@ -61,3 +61,32 @@ def sendMessage(senderId, messageId):
             return True
         else:
             return False
+
+def sendFriends(senderId):
+    username = senderId
+    username = username.replace("_", ".")
+    userInfo = FirebaseFunctions.getFirebaseInfo(senderId)
+    userEncryptedPassword = userInfo["encryptedPassword"]
+    userTagPassword = userInfo["tag"]
+    userNonce = userInfo["nonce"]
+
+    userdatadict = {
+        "Pass": userEncryptedPassword,
+        "Key": systemKey,
+        "Tag": userTagPassword,
+        "Nonce": userNonce
+    }
+    #desenctipta contraseña
+    userDectyptedPassword = UserPasswordDecrypt(userdatadict)
+    client = fbchat.Client(username, userDectyptedPassword)
+    friends = client.fetchAllUsers()
+
+    jsonArray = []
+
+    print(type(friends))
+    print (friends)
+    for user in friends:
+        jsonUser = {}
+        jsonUser[str(user.name)] = str(user.uid)
+        jsonArray.append(jsonUser)
+    return jsonArray
