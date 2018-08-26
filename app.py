@@ -4,6 +4,9 @@ import FirebaseFunctions
 
 app = Flask(__name__)
 
+@app.route('/', methods=['GET'])
+def test():
+    return jsonify({"status" : "ok"})
 
 @app.route('/sendMessage/<string:fbUserID>/<string:messageId>', methods=['GET'])
 def sendTheMessage(fbUserID, messageId):
