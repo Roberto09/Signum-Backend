@@ -54,9 +54,8 @@ def sendMessage(senderId, messageId):
 
     for key, name in friendsToSend.items():
         msg = Message(messageToSend)
-        friends = client.searchForUsers(name)
         print(msg, " ", name)
-        sent = client.send(msg, friends[0].uid)
+        sent = client.send(msg, name)
         if sent:
             return True
         else:
