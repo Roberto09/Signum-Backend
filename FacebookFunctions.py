@@ -52,7 +52,9 @@ def sendMessage(senderId, messageId):
 
     client = fbchat.Client(username, userDectyptedPassword)
 
+    print(friendsToSend.items)
     for key, name in friendsToSend.items():
+        print (name)
         msg = Message(messageToSend)
         print(msg, " ", name)
         sent = client.send(msg, name)
