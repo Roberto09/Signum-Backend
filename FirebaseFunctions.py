@@ -3,8 +3,8 @@ import base64
 from firebase import firebase
 from flask import jsonify
 import FacebookFunctions
-systemKey = b"SUPERSECRETKEYXD"
-fb = firebase.FirebaseApplication('https://emergencyapp-1e7d0.firebaseio.com', None)
+systemKey = b"here-goes-the-key-you-want-to-use-for-encryption"
+fb = firebase.FirebaseApplication('here-goes-the-firebase-url', None)
 
 def getFirebaseInfo(uid):
     userInfoJson = fb.get("/Users/" + uid, None)

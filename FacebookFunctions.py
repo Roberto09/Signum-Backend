@@ -3,7 +3,7 @@ from Crypto.Cipher import AES
 import FirebaseFunctions
 import fbchat
 from fbchat.models import Message
-systemKey = b"SUPERSECRETKEYXD"
+systemKey = b"here-goes-the-key-you-want-to-use-for-encryption"
 
 
 def UserPasswordDecrypt(udd):
